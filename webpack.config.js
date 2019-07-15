@@ -1,6 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -27,7 +28,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader'
         ]
       }
@@ -35,7 +36,10 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new ManifestPlugin()
+    new ManifestPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css'
+    }),
   ],
   optimization: {
     moduleIds: 'hashed',
