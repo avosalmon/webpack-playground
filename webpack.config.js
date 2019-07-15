@@ -18,6 +18,7 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               presets: [
+                // converts ES2019 to ES5
                 '@babel/preset-env'
               ]
             }
