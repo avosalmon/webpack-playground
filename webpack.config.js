@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -55,6 +56,9 @@ module.exports = {
       }
     },
     minimizer: [
+      // Webpack minimize JS by default
+      // but we have to specify minimizer if we overwrite minimizer settings.
+      new TerserPlugin,
       new OptimizeCssAssetsPlugin
     ]
   }
