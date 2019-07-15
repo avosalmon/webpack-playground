@@ -15,10 +15,10 @@ module.exports = {
         test: /\.js$/,
         use: [
           {
+            // Loads ES2015+ code and transpiles to ES5 using Babel
             loader: 'babel-loader',
             options: {
               presets: [
-                // converts ES2019 to ES5
                 '@babel/preset-env'
               ]
             }
