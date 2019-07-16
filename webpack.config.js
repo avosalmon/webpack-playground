@@ -3,7 +3,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = (env, argv) => {
@@ -79,7 +78,7 @@ module.exports = (env, argv) => {
       minimizer: [
         // Webpack minimize JS by default
         // but we have to specify minimizer if we overwrite minimizer settings.
-        new UglifyJsPlugin,
+
         new OptimizeCssAssetsPlugin
       ]
     }
