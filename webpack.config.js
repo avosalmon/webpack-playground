@@ -4,6 +4,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader');
 
 module.exports = {
   entry: {
@@ -33,9 +34,17 @@ module.exports = {
         ]
       },
       {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+
+      // This will apply to both plain `.scss` files
+      // AND `<style lang="scss">` blocks in `.vue` files
+      {
         test: /\.scss$/,
         use: [
           MiniCssExtractPlugin.loader,
+          'vue-style-loader',
           'css-loader',
           'sass-loader'
         ]
@@ -48,6 +57,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
     }),
+    new VueLoaderPlugin()
   ],
   optimization: {
     moduleIds: 'hashed',
