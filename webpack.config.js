@@ -48,6 +48,7 @@ module.exports = (env, argv) => {
           use: [
             // Only apply CSS extraction for production so that
             // we get CSS hot reload during development.
+            // https://vue-loader.vuejs.org/guide/extract-css.html
             isProd ? MiniCssExtractPlugin.loader : 'vue-style-loader',
             'css-loader',
             'sass-loader'
